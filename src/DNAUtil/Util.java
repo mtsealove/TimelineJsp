@@ -166,7 +166,11 @@ public class Util {
                 }
             }
         }
-
+        for(ArrayList<Subject> subjects1:subjects) {
+            if(fitness(subjects1)==0) {
+                return false;
+            }
+        }
         if (diff < 10) {
             return true;
         } else {

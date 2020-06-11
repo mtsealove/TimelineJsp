@@ -23,7 +23,7 @@ public class Craw {
 
     //   기본 드라이어 및 크롤링 객체 생성
     public Craw() {
-        System.setProperty("webdriver.chrome.driver", "/home/ubuntu/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/isanhae/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.setCapability("ignoreProtectedModeSettings", true);
         options.addArguments("headless");

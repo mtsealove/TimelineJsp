@@ -61,18 +61,16 @@ public class Timeline {
 
     // 겹치는지 판단
     public static boolean overlap(ArrayList<String> days, String day) {
-        boolean result = false;
         if (days.contains(day)) {
-            result = true;
+            return true;
         } else {
             ArrayList<String> others = getOtherTime(day);
             for (String other : others) {
                 if (days.contains(other)) {
-                    result = true;
-                    break;
+                    return true;
                 }
             }
         }
-        return result;
+        return false;
     }
 }

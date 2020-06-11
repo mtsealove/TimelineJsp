@@ -24,6 +24,7 @@
     String[] MaxStrs = request.getParameterValues("Max");
     String[] Times = request.getParameterValues("Time");
     String[] WeightStrs = request.getParameterValues("Weight");
+
     int[] Points = new int[PointStrs.length], Maxs = new int[MaxStrs.length], Weights = new int[WeightStrs.length];
     // 최대 학점
     int MaxPoint = Integer.parseInt(request.getParameter("max_point"));
@@ -80,12 +81,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('#reload-btn').click(function () {
+                $('#form').submit();
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container contents">
     <h3>추천 시간표</h3><br>
-
-<%-- 최종 결과물 출력--%>
+    <% int weight = 0;
+        for (int k = 0; k < pick[0].size(); k++) {
+            weight += pick[0].get(k).getWeight();
+        } %>
+    <h4>만족도: <%=weight%></h4>
+    <%-- 최종 결과물 출력--%>
     <table class="table table-striped">
         <thead>
         <th>학수번호</th>
@@ -120,12 +134,29 @@
             </td>
             <td><%=pick[0].get(k).getTime()%>
             </td>
-            <td><%=pick[0].get(k).getWeight()%></td>
+            <td><%=pick[0].get(k).getWeight()%>
+            </td>
         </tr>
         <% } %>
         </tbody>
     </table>
     <button type="button" class="btn btn-primary" onclick="location.href='index.jsp'">돌아가기</button>
+    <button type="button" class="btn btn-success" id="reload-btn">다른 추천 보기</button>
+    <form id="form" method="post" style="display: none">
+        <% for (int k = 0; k < IDs.length; k++) { %>
+        <input name="ID" value="<%=IDs[k]%>">
+        <input name="Name" value="<%=Names[k]%>">
+        <input name="Div" value="<%=Divs[k]%>">
+        <input name="Week" value="<%=Weeks[k]%>">
+        <input name="Professor" value="<%=Professors[k]%>">
+        <input name="Room" value="<%=Rooms[k]%>">
+        <input name="Point" value="<%=Points[k]%>">
+        <input name="Max" value="<%=Maxs[k]%>">
+        <input name="Time" value="<%=Times[k]%>">
+        <input name="Weight" value="<%=Weights[k]%>">
+        <% } %>
+        <input name="max_point" value="<%=MaxPoint%>">
+    </form>
 </div>
 
 </body>

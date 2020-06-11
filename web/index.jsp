@@ -22,7 +22,7 @@
         $(function () {
             $('#modal').hide();
             $('#create-btn').click(function () {
-                if (confirm('이대로 등록하시겠습니까?')) {
+                if (confirm('시간표를 생성하시겠습니까?')) {
                     $('#form').submit();
                 }
             });
@@ -176,7 +176,7 @@
                 <th>학점</th>
                 <th>인원</th>
                 <th>주차</th>
-                <th>우선순위</th>
+                <th>가중치</th>
                 </thead>
                 <tbody id="cart-table">
 
